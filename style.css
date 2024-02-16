@@ -18,38 +18,19 @@ dialog > form {
   gap: 1rem;
 }
 
-.form-control {
-  display: flex;
-  flex-direction: column;
-}
-
-fieldset {
-  margin: 0 0 0 0;
-  border: 0;
-  padding: 0;
-}
-
 .container {
-  width: 60%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 1fr, 2fr, 1fr;
+  gap: 2rem;
 }
 
 #details,
 #enrolment {
-  grid-column: span 3;
+  grid-column: span 2;
 }
 
 #wellbeing-star {
-  grid-column: span 3;
-}
-
-td {
-  padding-right: 1rem;
-}
-
-thead {
-  font-weight: 600;
+  grid-column: span 2;
 }

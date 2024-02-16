@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
   <title>Flax</title>
@@ -12,29 +13,29 @@
     <div id="details">
       <h2>Details</h2>
       <form action="." method="get">
-        <div class="form-control">
+        <div class="form-group">
           <label for="service-arm">Service Arm</label>
-          <select name="service-arm" id="service-arm"></select>
+          <select name="service-arm" id="service-arm" class="form-control"></select>
         </div>
   
-        <div class="form-control">
+        <div class="form-group">
           <label for="referral-date">Referral Date</label>
-          <input type="date" name="referral-date" id="referral-date">
+          <input type="date" name="referral-date" id="referral-date" class="form-control">
         </div>
   
-        <div class="form-control">
+        <div class="form-group">
           <label for="referred-by">Referred By</label>
-          <input type="text" name="referred-by" id="referred-by">
+          <input type="text" name="referred-by" id="referred-by" class="form-control">
         </div>
   
-        <div class="form-control">
+        <div class="form-group">
           <label for="status">Status</label>
-          <select name="status" id="status"></select>
+          <select name="status" id="status" class="form-control"></select>
         </div>
   
-        <div class="form-control">
+        <div class="form-group">
           <label for="provider">Provider</label>
-          <select name="provider" id="provider"></select>
+          <select name="provider" id="provider" class="form-control"></select>
         </div>
       </form>
     </div>
@@ -42,31 +43,31 @@
     <div id="enrolment">
       <h2>Enrolment</h2>
       <form action="">
-        <div class="form-control">
+        <div class="form-group">
           <label for="consent-date">Consent Date</label>
-          <input type="date" name="consent-date" id="consent-date">
+          <input type="date" name="consent-date" id="consent-date" class="form-control">
         </div>
   
-        <div class="form-control">
+        <div class="form-group">
           <label for="plan-created-date">Plan Created Date</label>
-          <input type="date" name="plan-created-date" id="plan-created-date">
+          <input type="date" name="plan-created-date" id="plan-created-date" class="form-control">
         </div>
   
-        <div class="form-control">
+        <div class="form-group">
           <label for="enrolment-date">Enrolment Date</label>
-          <input type="date" name="enrolment-date" id="enrolment-date">
+          <input type="date" name="enrolment-date" id="enrolment-date" class="form-control">
         </div>
   
-        <div class="form-control">
+        <div class="form-group">
           <label for="employment-status">Employment Status at Enrolment</label>
-          <select name="employment-status" id="employment-status"></select>
+          <select name="employment-status" id="employment-status" class="form-control"></select>
         </div>
       </form>
     </div>
 
     <div id="wellbeing-star" class="table-section">
       <h2>Wellbeing Star</h2>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <td>Date Completed</td>
@@ -86,123 +87,203 @@
       <dialog>
         <h3>Add Wellbeing Star</h3>
         <form action="">
-          <div class="form-control">
+          <div class="form-group">
             <label for="date-completed">Date Completed</label>
-            <input type="date" name="dateCompleted" id="date-completed">
+            <input type="date" name="dateCompleted" id="date-completed" class="form-control">
           </div>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Your Lifestyle</legend>
-            <label for="lifestyle-1">1</label>
-            <input type="radio" name="lifestyle" id="lifestyle-1" value="1">
-            <label for="lifestyle-2">2</label>
-            <input type="radio" name="lifestyle" id="lifestyle-2" value="2">
-            <label for="lifestyle-3">3</label>
-            <input type="radio" name="lifestyle" id="lifestyle-3" value="3">
-            <label for="lifestyle-4">4</label>
-            <input type="radio" name="lifestyle" id="lifestyle-4" value="4">
-            <label for="lifestyle-5">5</label>
-            <input type="radio" name="lifestyle" id="lifestyle-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="lifestyle-1">1</label>
+              <input class="form-check-input" type="radio" name="lifestyle" id="lifestyle-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="lifestyle-2">2</label>
+              <input class="form-check-input" type="radio" name="lifestyle" id="lifestyle-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="lifestyle-3">3</label>
+              <input class="form-check-input" type="radio" name="lifestyle" id="lifestyle-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="lifestyle-4">4</label>
+              <input class="form-check-input" type="radio" name="lifestyle" id="lifestyle-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="lifestyle-5">5</label>
+              <input class="form-check-input" type="radio" name="lifestyle" id="lifestyle-5" value="5">
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Looking After Yourself</legend>
-            <label for="looking-after-yourself-1">1</label>
-            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-1" value="1">
-            <label for="looking-after-yourself-2">2</label>
-            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-2" value="2">
-            <label for="looking-after-yourself-3">3</label>
-            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-3" value="3">
-            <label for="looking-after-yourself-4">4</label>
-            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-4" value="4">
-            <label for="looking-after-yourself-5">5</label>
-            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="looking-after-yourself-1">1</label>
+              <input class="form-check-input" type="radio" name="lookingAfterYourself" id="looking-after-yourself-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="looking-after-yourself-2">2</label>
+              <input class="form-check-input" type="radio" name="lookingAfterYourself" id="looking-after-yourself-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="looking-after-yourself-3">3</label>
+              <input class="form-check-input" type="radio" name="lookingAfterYourself" id="looking-after-yourself-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="looking-after-yourself-4">4</label>
+              <input class="form-check-input" type="radio" name="lookingAfterYourself" id="looking-after-yourself-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="looking-after-yourself-5">5</label>
+              <input class="form-check-input" type="radio" name="lookingAfterYourself" id="looking-after-yourself-5" value="5">
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Managing Symptoms</legend>
-            <label for="managing-symptoms-1">1</label>
-            <input type="radio" name="managingSymptoms" id="managing-symptoms-1" value="1">
-            <label for="managing-symptoms-2">2</label>
-            <input type="radio" name="managingSymptoms" id="managing-symptoms-2" value="2">
-            <label for="managing-symptoms-3">3</label>
-            <input type="radio" name="managingSymptoms" id="managing-symptoms-3" value="3">
-            <label for="managing-symptoms-4">4</label>
-            <input type="radio" name="managingSymptoms" id="managing-symptoms-4" value="4">
-            <label for="managing-symptoms-5">5</label>
-            <input type="radio" name="managingSymptoms" id="managing-symptoms-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="managing-symptoms-1">1</label>
+              <input class="form-check-input" type="radio" name="managingSymptoms" id="managing-symptoms-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="managing-symptoms-2">2</label>
+              <input class="form-check-input" type="radio" name="managingSymptoms" id="managing-symptoms-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="managing-symptoms-3">3</label>
+              <input class="form-check-input" type="radio" name="managingSymptoms" id="managing-symptoms-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="managing-symptoms-4">4</label>
+              <input class="form-check-input" type="radio" name="managingSymptoms" id="managing-symptoms-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="managing-symptoms-5">5</label>
+              <input class="form-check-input" type="radio" name="managingSymptoms" id="managing-symptoms-5" value="5">
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Work, Volunteering, Other Activies</legend>
-            <label for="work-volunteering-other-1">1</label>
-            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-1" value="1">
-            <label for="work-volunteering-other-2">2</label>
-            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-2" value="2">
-            <label for="work-volunteering-other-3">3</label>
-            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-3" value="3">
-            <label for="work-volunteering-other-4">4</label>
-            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-4" value="4">
-            <label for="work-volunteering-other-5">5</label>
-            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="work-volunteering-other-1">1</label>
+              <input class="form-check-input" type="radio" name="workVolunteeringOther" id="work-volunteering-other-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="work-volunteering-other-2">2</label>
+              <input class="form-check-input" type="radio" name="workVolunteeringOther" id="work-volunteering-other-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="work-volunteering-other-3">3</label>
+              <input class="form-check-input" type="radio" name="workVolunteeringOther" id="work-volunteering-other-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="work-volunteering-other-4">4</label>
+              <input class="form-check-input" type="radio" name="workVolunteeringOther" id="work-volunteering-other-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="work-volunteering-other-5">5</label>
+              <input class="form-check-input" type="radio" name="workVolunteeringOther" id="work-volunteering-other-5" value="5">
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Money</legend>
-            <label for="money-1">1</label>
-            <input type="radio" name="money" id="money-1" value="1">
-            <label for="money-2">2</label>
-            <input type="radio" name="money" id="money-2" value="2">
-            <label for="money-3">3</label>
-            <input type="radio" name="money" id="money-3" value="3">
-            <label for="money-4">4</label>
-            <input type="radio" name="money" id="money-4" value="4">
-            <label for="money-5">5</label>
-            <input type="radio" name="money" id="money-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="money-1">1</label>
+              <input class="form-check-input" type="radio" name="money" id="money-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="money-2">2</label>
+              <input class="form-check-input" type="radio" name="money" id="money-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="money-3">3</label>
+              <input class="form-check-input" type="radio" name="money" id="money-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="money-4">4</label>
+              <input class="form-check-input" type="radio" name="money" id="money-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="money-5">5</label>
+              <input class="form-check-input" type="radio" name="money" id="money-5" value="5">
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Where You Live</legend>
-            <label for="where-you-live-1">1</label>
-            <input type="radio" name="whereYouLive" id="where-you-live-1" value="1">
-            <label for="where-you-live-2">2</label>
-            <input type="radio" name="whereYouLive" id="where-you-live-2" value="2">
-            <label for="where-you-live-3">3</label>
-            <input type="radio" name="whereYouLive" id="where-you-live-3" value="3">
-            <label for="where-you-live-4">4</label>
-            <input type="radio" name="whereYouLive" id="where-you-live-4" value="4">
-            <label for="where-you-live-5">5</label>
-            <input type="radio" name="whereYouLive" id="where-you-live-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="where-you-live-1">1</label>
+              <input class="form-check-input" type="radio" name="whereYouLive" id="where-you-live-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="where-you-live-2">2</label>
+              <input class="form-check-input" type="radio" name="whereYouLive" id="where-you-live-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="where-you-live-3">3</label>
+              <input class="form-check-input" type="radio" name="whereYouLive" id="where-you-live-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="where-you-live-4">4</label>
+              <input class="form-check-input" type="radio" name="whereYouLive" id="where-you-live-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="where-you-live-5">5</label>
+              <input class="form-check-input" type="radio" name="whereYouLive" id="where-you-live-5" value="5">
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Family and Friends</legend>
-            <label for="family-and-friends-1">1</label>
-            <input type="radio" name="familyAndFriends" id="family-and-friends-1" value="1">
-            <label for="family-and-friends-2">2</label>
-            <input type="radio" name="familyAndFriends" id="family-and-friends-2" value="2">
-            <label for="family-and-friends-3">3</label>
-            <input type="radio" name="familyAndFriends" id="family-and-friends-3" value="3">
-            <label for="family-and-friends-4">4</label>
-            <input type="radio" name="familyAndFriends" id="family-and-friends-4" value="4">
-            <label for="family-and-friends-5">5</label>
-            <input type="radio" name="familyAndFriends" id="family-and-friends-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="family-and-friends-1">1</label>
+              <input class="form-check-input" type="radio" name="familyAndFriends" id="family-and-friends-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="family-and-friends-2">2</label>
+              <input class="form-check-input" type="radio" name="familyAndFriends" id="family-and-friends-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="family-and-friends-3">3</label>
+              <input class="form-check-input" type="radio" name="familyAndFriends" id="family-and-friends-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="family-and-friends-4">4</label>
+              <input class="form-check-input" type="radio" name="familyAndFriends" id="family-and-friends-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="family-and-friends-5">5</label>
+              <input class="form-check-input" type="radio" name="familyAndFriends" id="family-and-friends-5" value="5">
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="form-group">
             <legend>Feeling Positive</legend>
-            <label for="feeling-positive-1">1</label>
-            <input type="radio" name="feelingPositive" id="feeling-positive-1" value="1">
-            <label for="feeling-positive-2">2</label>
-            <input type="radio" name="feelingPositive" id="feeling-positive-2" value="2">
-            <label for="feeling-positive-3">3</label>
-            <input type="radio" name="feelingPositive" id="feeling-positive-3" value="3">
-            <label for="feeling-positive-4">4</label>
-            <input type="radio" name="feelingPositive" id="feeling-positive-4" value="4">
-            <label for="feeling-positive-5">5</label>
-            <input type="radio" name="feelingPositive" id="feeling-positive-5" value="5">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="feeling-positive-1">1</label>
+              <input class="form-check-input" type="radio" name="feelingPositive" id="feeling-positive-1" value="1">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="feeling-positive-2">2</label>
+              <input class="form-check-input" type="radio" name="feelingPositive" id="feeling-positive-2" value="2">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="feeling-positive-3">3</label>
+              <input class="form-check-input" type="radio" name="feelingPositive" id="feeling-positive-3" value="3">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="feeling-positive-4">4</label>
+              <input class="form-check-input" type="radio" name="feelingPositive" id="feeling-positive-4" value="4">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="feeling-positive-5">5</label>
+              <input class="form-check-input" type="radio" name="feelingPositive" id="feeling-positive-5" value="5">
+            </div>
           </fieldset>
-          <button type="submit">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </dialog>
-      <button>New</button>
+      <button class="btn btn-primary">New</button>
     </div>
 
     <div id="services" class="table-section">
       <h2>Services</h2>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <td>Date Services Accessed</td>
@@ -214,23 +295,23 @@
       <dialog>
         <h3>Services</h3>
         <form>
-          <div class="form-control">
+          <div class="form-group">
             <label for="date-service-accessed">Date Service Accessed</label>
-            <input type="date" name="dateServiceAccessed" id="date-service-accessed">
+            <input type="date" name="dateServiceAccessed" id="date-service-accessed" class="form-control">
           </div>
-          <div class="form-control">
+          <div class="form-group">
             <label for="service-type">Service Type</label>
-            <select name="serviceType" id="service-type"></select>
+            <select name="serviceType" id="service-type" class="form-control"></select>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </dialog>
-      <button>New</button>
+      <button class="btn btn-primary">New</button>
     </div>
 
     <div id="work-readiness-outcomes" class="table-section">
       <h2>Work Readiness Outcomes</h2>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <td>Outcome</td>
@@ -242,23 +323,23 @@
       <dialog>
         <h3>Work Readiness Outcomes</h3>
         <form>
-          <div class="form-control">
+          <div class="form-group">
             <label for="work-readiness-outcome">Outcome</label>
-            <select name="outcome" id="work-readiness-outcome"></select>
+            <select name="outcome" id="work-readiness-outcome" class="form-control"></select>
           </div>
-          <div class="form-control">
+          <div class="form-group">
             <label for="work-readiness-start-date">Start Date</label>
-            <input type="date" name="startDate" id="work-readiness-start-date">
+            <input type="date" name="startDate" id="work-readiness-start-date" class="form-control">
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </dialog>
-      <button>New</button>
+      <button class="btn btn-primary">New</button>
     </div>
 
     <div id="employment-outcomes" class="table-section">
       <h2>Employment Outcomes</h2>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <td>Outcome</td>
@@ -272,26 +353,26 @@
       <dialog>
         <h3>Employment Outcomes</h3>
         <form>
-          <div class="form-control">
+          <div class="form-group">
             <label for="employment-outcome">Outcome</label>
-            <select name="outcome" id="employment-outcome"></select>
+            <select name="outcome" id="employment-outcome" class="form-control"></select>
           </div>
-          <div class="form-control">
+          <div class="form-group">
             <label for="employment-outcome-hours-per-week">Hours per Week</label>
-            <input type="number" name="hoursPerWeek" id="employment-outcome-hours-per-week" min="1" max="99">
+            <input type="number" name="hoursPerWeek" id="employment-outcome-hours-per-week" class="form-control" min="1" max="99">
           </div>
-          <div class="form-control">
+          <div class="form-group">
             <label for="employment-outcome-start-date">Start Date</label>
-            <input type="date" name="startDate" id="employment-outcome-start-date">
+            <input type="date" name="startDate" id="employment-outcome-start-date" class="form-control">
           </div>
-          <div class="form-control">
+          <div class="form-group">
             <label for="employment-outcome-end-date">End Date</label>
-            <input type="date" name="endDate" id="employment-outcome-end-date">
+            <input type="date" name="endDate" id="employment-outcome-end-date" class="form-control">
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </dialog>
-      <button>New</button>
+      <button class="btn btn-primary">New</button>
     </div>
   </div>
 </body>
