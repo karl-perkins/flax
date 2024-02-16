@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+  <title>Flax</title>
+</head>
+<body>
+  <div class="container">
+    <div id="details">
+      <h2>Details</h2>
+      <form action="." method="get">
+        <div class="form-control">
+          <label for="service-arm">Service Arm</label>
+          <select name="service-arm" id="service-arm"></select>
+        </div>
+  
+        <div class="form-control">
+          <label for="referral-date">Referral Date</label>
+          <input type="date" name="referral-date" id="referral-date">
+        </div>
+  
+        <div class="form-control">
+          <label for="referred-by">Referred By</label>
+          <input type="text" name="referred-by" id="referred-by">
+        </div>
+  
+        <div class="form-control">
+          <label for="status">Status</label>
+          <select name="status" id="status"></select>
+        </div>
+  
+        <div class="form-control">
+          <label for="provider">Provider</label>
+          <select name="provider" id="provider"></select>
+        </div>
+      </form>
+    </div>
+
+    <div id="enrolment">
+      <h2>Enrolment</h2>
+      <form action="">
+        <div class="form-control">
+          <label for="consent-date">Consent Date</label>
+          <input type="date" name="consent-date" id="consent-date">
+        </div>
+  
+        <div class="form-control">
+          <label for="plan-created-date">Plan Created Date</label>
+          <input type="date" name="plan-created-date" id="plan-created-date">
+        </div>
+  
+        <div class="form-control">
+          <label for="enrolment-date">Enrolment Date</label>
+          <input type="date" name="enrolment-date" id="enrolment-date">
+        </div>
+  
+        <div class="form-control">
+          <label for="employment-status">Employment Status at Enrolment</label>
+          <select name="employment-status" id="employment-status"></select>
+        </div>
+      </form>
+    </div>
+
+    <div id="wellbeing-star" class="table-section">
+      <h2>Wellbeing Star</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Date Completed</td>
+            <td>Total</td>
+            <td>Lifestyle</td>
+            <td>Looking After Yourself</td>
+            <td>Managing Symptoms</td>
+            <td>Work, Volunteering, Other Activities</td>
+            <td>Money</td>
+            <td>Where You Live</td>
+            <td>Family and Friends</td>
+            <td>Feeling Positive</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <dialog>
+        <h3>Add Wellbeing Star</h3>
+        <form action="">
+          <div class="form-control">
+            <label for="date-completed">Date Completed</label>
+            <input type="date" name="dateCompleted" id="date-completed">
+          </div>
+          <fieldset>
+            <legend>Your Lifestyle</legend>
+            <label for="lifestyle-1">1</label>
+            <input type="radio" name="lifestyle" id="lifestyle-1" value="1">
+            <label for="lifestyle-2">2</label>
+            <input type="radio" name="lifestyle" id="lifestyle-2" value="2">
+            <label for="lifestyle-3">3</label>
+            <input type="radio" name="lifestyle" id="lifestyle-3" value="3">
+            <label for="lifestyle-4">4</label>
+            <input type="radio" name="lifestyle" id="lifestyle-4" value="4">
+            <label for="lifestyle-5">5</label>
+            <input type="radio" name="lifestyle" id="lifestyle-5" value="5">
+          </fieldset>
+          <fieldset>
+            <legend>Looking After Yourself</legend>
+            <label for="looking-after-yourself-1">1</label>
+            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-1" value="1">
+            <label for="looking-after-yourself-2">2</label>
+            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-2" value="2">
+            <label for="looking-after-yourself-3">3</label>
+            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-3" value="3">
+            <label for="looking-after-yourself-4">4</label>
+            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-4" value="4">
+            <label for="looking-after-yourself-5">5</label>
+            <input type="radio" name="lookingAfterYourself" id="looking-after-yourself-5" value="5">
+          </fieldset>
+          <fieldset>
+            <legend>Managing Symptoms</legend>
+            <label for="managing-symptoms-1">1</label>
+            <input type="radio" name="managingSymptoms" id="managing-symptoms-1" value="1">
+            <label for="managing-symptoms-2">2</label>
+            <input type="radio" name="managingSymptoms" id="managing-symptoms-2" value="2">
+            <label for="managing-symptoms-3">3</label>
+            <input type="radio" name="managingSymptoms" id="managing-symptoms-3" value="3">
+            <label for="managing-symptoms-4">4</label>
+            <input type="radio" name="managingSymptoms" id="managing-symptoms-4" value="4">
+            <label for="managing-symptoms-5">5</label>
+            <input type="radio" name="managingSymptoms" id="managing-symptoms-5" value="5">
+          </fieldset>
+          <fieldset>
+            <legend>Work, Volunteering, Other Activies</legend>
+            <label for="work-volunteering-other-1">1</label>
+            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-1" value="1">
+            <label for="work-volunteering-other-2">2</label>
+            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-2" value="2">
+            <label for="work-volunteering-other-3">3</label>
+            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-3" value="3">
+            <label for="work-volunteering-other-4">4</label>
+            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-4" value="4">
+            <label for="work-volunteering-other-5">5</label>
+            <input type="radio" name="workVolunteeringOther" id="work-volunteering-other-5" value="5">
+          </fieldset>
+          <fieldset>
+            <legend>Money</legend>
+            <label for="money-1">1</label>
+            <input type="radio" name="money" id="money-1" value="1">
+            <label for="money-2">2</label>
+            <input type="radio" name="money" id="money-2" value="2">
+            <label for="money-3">3</label>
+            <input type="radio" name="money" id="money-3" value="3">
+            <label for="money-4">4</label>
+            <input type="radio" name="money" id="money-4" value="4">
+            <label for="money-5">5</label>
+            <input type="radio" name="money" id="money-5" value="5">
+          </fieldset>
+          <fieldset>
+            <legend>Where You Live</legend>
+            <label for="where-you-live-1">1</label>
+            <input type="radio" name="whereYouLive" id="where-you-live-1" value="1">
+            <label for="where-you-live-2">2</label>
+            <input type="radio" name="whereYouLive" id="where-you-live-2" value="2">
+            <label for="where-you-live-3">3</label>
+            <input type="radio" name="whereYouLive" id="where-you-live-3" value="3">
+            <label for="where-you-live-4">4</label>
+            <input type="radio" name="whereYouLive" id="where-you-live-4" value="4">
+            <label for="where-you-live-5">5</label>
+            <input type="radio" name="whereYouLive" id="where-you-live-5" value="5">
+          </fieldset>
+          <fieldset>
+            <legend>Family and Friends</legend>
+            <label for="family-and-friends-1">1</label>
+            <input type="radio" name="familyAndFriends" id="family-and-friends-1" value="1">
+            <label for="family-and-friends-2">2</label>
+            <input type="radio" name="familyAndFriends" id="family-and-friends-2" value="2">
+            <label for="family-and-friends-3">3</label>
+            <input type="radio" name="familyAndFriends" id="family-and-friends-3" value="3">
+            <label for="family-and-friends-4">4</label>
+            <input type="radio" name="familyAndFriends" id="family-and-friends-4" value="4">
+            <label for="family-and-friends-5">5</label>
+            <input type="radio" name="familyAndFriends" id="family-and-friends-5" value="5">
+          </fieldset>
+          <fieldset>
+            <legend>Feeling Positive</legend>
+            <label for="feeling-positive-1">1</label>
+            <input type="radio" name="feelingPositive" id="feeling-positive-1" value="1">
+            <label for="feeling-positive-2">2</label>
+            <input type="radio" name="feelingPositive" id="feeling-positive-2" value="2">
+            <label for="feeling-positive-3">3</label>
+            <input type="radio" name="feelingPositive" id="feeling-positive-3" value="3">
+            <label for="feeling-positive-4">4</label>
+            <input type="radio" name="feelingPositive" id="feeling-positive-4" value="4">
+            <label for="feeling-positive-5">5</label>
+            <input type="radio" name="feelingPositive" id="feeling-positive-5" value="5">
+          </fieldset>
+          <button type="submit">Submit</button>
+        </form>
+      </dialog>
+      <button>New</button>
+    </div>
+
+    <div id="services" class="table-section">
+      <h2>Services</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Date Services Accessed</td>
+            <td>Service Type</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <dialog>
+        <h3>Services</h3>
+        <form>
+          <div class="form-control">
+            <label for="date-service-accessed">Date Service Accessed</label>
+            <input type="date" name="dateServiceAccessed" id="date-service-accessed">
+          </div>
+          <div class="form-control">
+            <label for="service-type">Service Type</label>
+            <select name="serviceType" id="service-type"></select>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </dialog>
+      <button>New</button>
+    </div>
+
+    <div id="work-readiness-outcomes" class="table-section">
+      <h2>Work Readiness Outcomes</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Outcome</td>
+            <td>Start Date</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <dialog>
+        <h3>Work Readiness Outcomes</h3>
+        <form>
+          <div class="form-control">
+            <label for="work-readiness-outcome">Outcome</label>
+            <select name="outcome" id="work-readiness-outcome"></select>
+          </div>
+          <div class="form-control">
+            <label for="work-readiness-start-date">Start Date</label>
+            <input type="date" name="startDate" id="work-readiness-start-date">
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </dialog>
+      <button>New</button>
+    </div>
+
+    <div id="employment-outcomes" class="table-section">
+      <h2>Employment Outcomes</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Outcome</td>
+            <td>Hours per Week</td>
+            <td>Start Date</td>
+            <td>End Date</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <dialog>
+        <h3>Employment Outcomes</h3>
+        <form>
+          <div class="form-control">
+            <label for="employment-outcome">Outcome</label>
+            <select name="outcome" id="employment-outcome"></select>
+          </div>
+          <div class="form-control">
+            <label for="employment-outcome-hours-per-week">Hours per Week</label>
+            <input type="number" name="hoursPerWeek" id="employment-outcome-hours-per-week" min="1" max="99">
+          </div>
+          <div class="form-control">
+            <label for="employment-outcome-start-date">Start Date</label>
+            <input type="date" name="startDate" id="employment-outcome-start-date">
+          </div>
+          <div class="form-control">
+            <label for="employment-outcome-end-date">End Date</label>
+            <input type="date" name="endDate" id="employment-outcome-end-date">
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </dialog>
+      <button>New</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+ *,
+ *::after,
+ *::before {
+  box-sizing: border-box;
+ }
+ 
+ #details form,
+ #enrolment form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+}
+
+dialog > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  margin: 0 0 0 0;
+  border: 0;
+  padding: 0;
+}
+
+.container {
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr, 2fr, 1fr;
+}
+
+#details,
+#enrolment {
+  grid-column: span 3;
+}
+
+#wellbeing-star {
+  grid-column: span 3;
+}
+
+td {
+  padding-right: 1rem;
+}
+
+thead {
+  font-weight: 600;
+}
