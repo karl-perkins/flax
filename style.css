@@ -34,3 +34,8 @@ dialog > form {
 #wellbeing-star {
   grid-column: span 2;
 }
+
+legend {
+  font-size: 1rem;
+  margin: 0;
+}
