@@ -130,6 +130,20 @@ sections.forEach((section) => {
 //
 // Populate Options
 //
+const serviceArms = [
+	'Standard',
+	'Responding Early'
+]
+
+const caseStatus = [
+	'Awaiting Enrolment',
+	'Did Not Proceed',
+	'Active',
+	'In Post-Placement Support',
+	'Exited Service',
+	'Transfer to Standard Service Arm',
+]
+
 const serviceTypes = [
 	'AOD/Addiction Support Services',
 	'Career Advice/Exploration',
@@ -172,6 +186,10 @@ function createOptions(id, arr) {
 
 const options = [];
 
+
+options.push(createOptions('#service-arm', serviceArms));
+options.push(createOptions('#case-status', caseStatus));
+options.push(createOptions('#employment-status', employmentOutcomes));
 options.push(createOptions('#service-type', serviceTypes));
 options.push(createOptions('#work-readiness-outcome', workReadinessOutcomes));
 options.push(createOptions('#employment-outcome', employmentOutcomes));
