@@ -13,15 +13,15 @@ function createEnrolment() {
 
 function createWellbeingStar(formData) {
 	const dateCompleted = formData.get('dateCompleted');
-	const lifestyle = formData.get('lifestyle');
-	const lookingAfterYourself = formData.get('lookingAfterYourself');
-	const managingSymptoms = formData.get('managingSymptoms');
-	const workVolunteeringOther = formData.get('workVolunteeringOther');
-	const money = formData.get('money');
-	const whereYouLive = formData.get('whereYouLive');
-	const familyAndFriends = formData.get('familyAndFriends');
-	const feelingPositive = formData.get('feelingPositive');
-	const total = 1;
+	const lifestyle = Number(formData.get('lifestyle'));
+	const lookingAfterYourself = Number(formData.get('lookingAfterYourself'));
+	const managingSymptoms = Number(formData.get('managingSymptoms'));
+	const workVolunteeringOther = Number(formData.get('workVolunteeringOther'));
+	const money = Number(formData.get('money'));
+	const whereYouLive = Number(formData.get('whereYouLive'));
+	const familyAndFriends = Number(formData.get('familyAndFriends'));
+	const feelingPositive = Number(formData.get('feelingPositive'));
+	const total = lifestyle + lookingAfterYourself + managingSymptoms + workVolunteeringOther + money + whereYouLive + familyAndFriends + feelingPositive;
 
 	return {
 		dateCompleted,
@@ -66,7 +66,7 @@ function createRows(tableBody, objArr) {
 
 	objArr.forEach((obj) => {
 		const row = tableBody.insertRow();
-		
+
 		for (const prop in obj) {
 			row.insertCell().textContent = obj[prop];
 		}
