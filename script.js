@@ -11,18 +11,18 @@ function createEnrolment() {
 	
 }
 
-function createWellbeingStar(
-	dateCompleted,
-	lifestyle,
-	lookingAfterYourself,
-	managingSymptoms,
-	workVolunteeringOther,
-	money,
-	whereYouLive,
-	familyAndFriends,
-	feelingPositive
-) {
+function createWellbeingStar(formData) {
+	const dateCompleted = formData.get('dateCompleted');
+	const lifestyle = formData.get('lifestyle');
+	const lookingAfterYourself = formData.get('lookingAfterYourself');
+	const managingSymptoms = formData.get('managingSymptoms');
+	const workVolunteeringOther = formData.get('workVolunteeringOther');
+	const money = formData.get('money');
+	const whereYouLive = formData.get('whereYouLive');
+	const familyAndFriends = formData.get('familyAndFriends');
+	const feelingPositive = formData.get('feelingPositive');
 	const total = 1;
+
 	return {
 		dateCompleted,
 		total,
@@ -37,26 +37,28 @@ function createWellbeingStar(
 	};
 }
 
-function createService(dateServiceAccessed, serviceType) {
-	return { dateServiceAccessed, serviceType };
+function createService(formData) {
+	const dateServiceAccessed = formData.get('dateServiceAccessed');
+	const serviceType = formData.get('serviceType')
+	const serviceTypeDesc = serviceTypes[serviceType];
+
+	return { dateServiceAccessed, serviceTypeDesc };
 }
 
-function createWorkReadinessOutcome(outcome, startDate) {
-	return { outcome, startDate };
+function createWorkReadinessOutcome(formData) {
+	const outcome = formData.get('outcome');
+	const outcomeDesc = workReadinessOutcomes[outcome];
+	const startDate = formData.get('startDate');
+	return { outcomeDesc, startDate };
 }
 
-function createEmploymentOutcome(outcome, hoursPerWeek, startDate, endDate) {
-	return { outcome, hoursPerWeek, startDate, endDate };
-}
-
-function createObject(createObjFn, formData) {
-	const obj = createObjFn();
-
-	for (let [key, value] of formData) {
-		obj[key] = value;
-	}
-
-	return obj;
+function createEmploymentOutcome(formData) {
+	const outcome = formData.get('outcome');
+	const outcomeDesc = employmentOutcomes[outcome];
+	const hoursPerWeek = formData.get('hoursPerWeek');
+	const startDate = formData.get('startDate');
+	const endDate = formData.get('endDate');
+	return { outcomeDesc, hoursPerWeek, startDate, endDate };
 }
 
 function createRows(tableBody, objArr) {
@@ -64,8 +66,7 @@ function createRows(tableBody, objArr) {
 
 	objArr.forEach((obj) => {
 		const row = tableBody.insertRow();
-
-		// Insert cell for each property
+		
 		for (const prop in obj) {
 			row.insertCell().textContent = obj[prop];
 		}
@@ -74,7 +75,7 @@ function createRows(tableBody, objArr) {
 
 function submitForm(form, createObjFn, objArr, tableBody, dialog) {
 	const formData = new FormData(form);
-	objArr.push(createObject(createObjFn, formData));
+	objArr.push(createObjFn(formData));
 	createRows(tableBody, objArr);
 	form.reset();
 	dialog.close();
