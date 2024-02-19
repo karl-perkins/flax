@@ -16,7 +16,12 @@ function createCase(formData) {
 }
 
 function createEnrolment(formData) {
-	
+	const consentDate = formData.get('consentDate');
+	const planCreatedDate = formData.get('planCreatedDate');
+	const enrolmentDate = formData.get('enrolmentDate');
+	const enrolmentStatus = formData.get('enrolmentStatus');
+
+	return { consentDate, planCreatedDate, enrolmentDate, enrolmentStatus }
 }
 
 function createWellbeingStar(formData) {
