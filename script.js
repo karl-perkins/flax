@@ -3,11 +3,19 @@ const servicesArray = [];
 const workReadinessOutcomesArray = [];
 const employmentOutcomesArray = [];
 
-function createCase() {
+function createCase(formData) {
+	const serviceArm = formData.get('serviceArm');
+	const referralDate = formData.get('referralDate');
+	const referredBy = formData.get('referredBy');
+	const status = formData.get('status');
+	const closeReason = formData.get('closeReason');
+	const closeDate = formData.get('closeDate');
+	const provider = formData.get('provider');
 
+	return { serviceArm, referralDate, referredBy, status, closeReason, closeDate, provider };
 }
 
-function createEnrolment() {
+function createEnrolment(formData) {
 	
 }
 
