@@ -47,3 +47,7 @@ legend {
   font-size: 1rem;
   margin: 0;
 }
+
+.hidden {
+  display: none;
+}

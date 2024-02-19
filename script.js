@@ -136,13 +136,42 @@ const serviceArms = [
 	'Responding Early'
 ]
 
-const caseStatus = [
+const caseStatuses = [
 	'Awaiting Enrolment',
 	'Did Not Proceed',
 	'Active',
 	'In Post-Placement Support',
 	'Exited Service',
 	'Transfer to Standard Service Arm',
+]
+
+const caseStatusToCloseReasons = {
+	'0': [0],
+	'1': [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+	'2': [0],
+	'3': [0],
+	'4': [2, 3, 4, 5, 6, 10, 15],
+	'5': [1],
+}
+
+const closeReasons = [
+	'Not applicable',
+	'Transfer to Standard Service Arm',
+	'Achieved Desired Outcomes',
+	'Completed Service Duration',
+	'Provider Dismissed Client',
+	'Moved Out of Area',
+	'Unknown/Client Disengaged',
+	'Already Participating in a Similar Service',
+	'Chose Not to Participate',
+	'Employment Goal Reached Prior to Enrolment',
+	'Medical Reason',
+	'Other Services More Appropriate',
+	'Settled in Education/Training',
+	'Unable to Contact',
+	'Wrong Timing',
+	'Other Reason',
+	'Not Suitable',
 ]
 
 const serviceTypes = [
@@ -187,9 +216,8 @@ function createOptions(id, arr) {
 
 const options = [];
 
-
 options.push(createOptions('#service-arm', serviceArms));
-options.push(createOptions('#case-status', caseStatus));
+options.push(createOptions('#case-status', caseStatuses));
 options.push(createOptions('#employment-status', employmentOutcomes));
 options.push(createOptions('#service-type', serviceTypes));
 options.push(createOptions('#work-readiness-outcome', workReadinessOutcomes));
@@ -206,4 +234,45 @@ options.forEach((option) => {
 	option.arr.forEach((e, i) => {
 		addOptions(document.querySelector(option.id), e, i);
 	});
+});
+
+function getTodaysDate() {
+	let today = new Date();
+	const dd = String(today.getDate()).padStart(2, '0');
+	const mm = String(today.getMonth() + 1).padStart(2, '0');
+	const yyyy = today.getFullYear();
+	today = yyyy + '-' + mm + '-' + dd;
+	return today;
+}
+
+const caseStatus = document.querySelector('#case-status');
+const closeReason = document.querySelector('#close-reason');
+const closeDate = document.querySelector('#close-date');
+
+caseStatus.addEventListener('change', (event) => {
+	const closeReasonValue = event.target.value;
+
+	closeReason.innerHTML = '';
+	closeReason.disabled = true;
+	closeDate.disabled = true;
+
+	switch (closeReasonValue) {
+		case '1':
+		case '4': {
+			closeReason.disabled = false;
+		}
+		case '5': {
+			closeDate.disabled = false;
+			closeDate.value = getTodaysDate();
+			const reasons = caseStatusToCloseReasons[closeReasonValue];
+			reasons.forEach(reasonId => addOptions(closeReason, closeReasons[reasonId], reasonId));
+			break;
+		}
+		default: {
+			const reasons = caseStatusToCloseReasons[closeReasonValue];
+			reasons.forEach(reasonId => addOptions(closeReason, closeReasons[reasonId], reasonId));
+			closeDate.value = null;
+			break;
+		}
+	}
 });
