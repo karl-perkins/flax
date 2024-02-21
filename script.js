@@ -6,13 +6,15 @@ const employmentOutcomesArray = [];
 function createCase(formData) {
 	const serviceArm = formData.get('serviceArm');
 	const referralDate = formData.get('referralDate');
-	const referredBy = formData.get('referredBy');
+	const provider = formData.get('provider');
+	const referralPathway = formData.get('referralPathway');
+	const practitioner = formData.get('practitioner');
+	const gpTeamMember = formData.get('gpTeamMember');
 	const status = formData.get('status');
 	const closeReason = formData.get('closeReason');
 	const closeDate = formData.get('closeDate');
-	const provider = formData.get('provider');
 
-	return { serviceArm, referralDate, referredBy, status, closeReason, closeDate, provider };
+	return { serviceArm, referralDate, provider, referralPathway, practitioner, gpTeamMember, status, closeReason, closeDate };
 }
 
 function createEnrolment(formData) {
@@ -223,6 +225,59 @@ const employmentOutcomes = [
 	'Part-time Work (15-29 Hours per Week)',
 ];
 
+const providers = [
+	'Micky Mouse',
+	'Minnie Mouse',
+	'Donald Duck',
+	'Goofy'
+]
+
+const referralPathways = [
+	'169 Medical Centre',
+	'Awapuni Medical Centre',
+	'Best Care Whakapai Hauora',
+	'Broadway Medical Centre',
+	'City Doctors White Cross',
+	'Cook Street Health Centre',
+	'Dr Parrys Surgery',
+	'Feilding Health Care',
+	'Group Medical Chambers',
+	'Health Hub Project',
+	'Hokowhitu Medical Centre',
+	'Horowhenua Community Practice',
+	'Kauri Healthcare',
+	'Masonic Medical',
+	'Milson Medical Chambers',
+	'Orbit Medical Centre',
+	'Otaki Medical Centre',
+	'Queen Street Surgery Levin',
+	'Short Surgery Dannevirke',
+	'Sydney Street Health Centre',
+	'Tararua Health Group',
+	'Tararua Medical Centre',
+	'Te Waiora Community Health Services',
+	'The Palms Medical Centre',
+	'Victoria Medical',
+	'Village Medical',
+	'West End Medical Centre',
+	'YOSS',
+	'Employer',
+	'Self-Referral',
+	'MSD Case Manager',
+	'Mātanga',
+	'Union',
+	'Te Tihi',
+	'ACROSS',
+	'Methodist Social Services',
+	'Other',
+	'Mana Whaikaha',
+	'Mana o te Tangata',
+	'Workbridge',
+	'RIMA',
+	'Levin Family Health',
+	'Ashhurst Health centre'
+]
+
 function createOptions(id, arr) {
 	return { id, arr };
 }
@@ -230,6 +285,8 @@ function createOptions(id, arr) {
 const options = [];
 
 options.push(createOptions('#service-arm', serviceArms));
+options.push(createOptions('#provider', providers));
+options.push(createOptions('#referral-pathway', referralPathways));
 options.push(createOptions('#case-status', caseStatuses));
 options.push(createOptions('#employment-status', employmentOutcomes));
 options.push(createOptions('#service-type', serviceTypes));
