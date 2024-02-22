@@ -3,18 +3,34 @@ const servicesArray = [];
 const workReadinessOutcomesArray = [];
 const employmentOutcomesArray = [];
 
-function createCase(formData) {
-	const serviceArm = formData.get('serviceArm');
-	const referralDate = formData.get('referralDate');
-	const provider = formData.get('provider');
-	const referralPathway = formData.get('referralPathway');
-	const practitioner = formData.get('practitioner');
-	const gpTeamMember = formData.get('gpTeamMember');
-	const status = formData.get('status');
-	const closeReason = formData.get('closeReason');
-	const closeDate = formData.get('closeDate');
+function createCase() {
+	let serviceArm;
+	let referralDate;
+	let provider;
+	let referralPathway;
+	let practitioner;
+	let gpTeamMember;
+	let status;
+	let closeReason;
+	let closeDate;
 
-	return { serviceArm, referralDate, provider, referralPathway, practitioner, gpTeamMember, status, closeReason, closeDate };
+	function updateCase(formData) {
+		serviceArm = formData.get('serviceArm');
+		referralDate = formData.get('referralDate');
+		provider = formData.get('provider');
+		referralPathway = formData.get('referralPathway');
+		practitioner = formData.get('practitioner');
+		gpTeamMember = formData.get('gpTeamMember');
+		status = formData.get('status');
+		closeReason = formData.get('closeReason');
+		closeDate = formData.get('closeDate');
+	}
+
+	function getCase() {
+		return  { serviceArm, referralDate, provider, referralPathway, practitioner, gpTeamMember, status, closeReason, closeDate };
+	}
+
+	return { getCase, updateCase };
 }
 
 function createEnrolment(formData) {
@@ -319,8 +335,8 @@ const caseStatus = document.querySelector('#case-status');
 const closeReason = document.querySelector('#close-reason');
 const closeDate = document.querySelector('#close-date');
 
-caseStatus.addEventListener('change', (event) => {
-	const closeReasonValue = event.target.value;
+function caseStatusHandler() {
+	const closeReasonValue = document.querySelector('#case-status').value;
 
 	closeReason.innerHTML = '';
 	closeReason.disabled = true;
@@ -345,4 +361,17 @@ caseStatus.addEventListener('change', (event) => {
 			break;
 		}
 	}
+}
+
+caseStatusHandler();
+caseStatus.addEventListener('change', () => caseStatusHandler());
+
+let caseDetails = createCase();
+const caseForm = document.querySelector('#details > form');
+caseForm.addEventListener('submit', (e) => {
+	console.log('submitted');
+	e.preventDefault();
+	const formData = new FormData(caseForm);
+	caseDetails.updateCase(formData);
+	console.log(caseDetails.getCase());
 });
