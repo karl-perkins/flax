@@ -366,7 +366,7 @@ function caseStatusHandler() {
 caseStatusHandler();
 caseStatus.addEventListener('change', () => caseStatusHandler());
 
-let caseDetails = createCase();
+const caseDetails = createCase();
 const caseForm = document.querySelector('#details > form');
 caseForm.addEventListener('submit', (e) => {
 	console.log('submitted');
