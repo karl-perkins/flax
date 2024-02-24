@@ -13,76 +13,70 @@
     <div id="details">
       <h2>Details</h2>
       <form action="." method="get">
-        <div class="form-group">
-          <label for="service-arm">Service Arm</label>
-          <select name="serviceArm" id="service-arm" class="form-control"></select>
+        <div class="form-wrapper">
+          <div class="form-group">
+            <label for="service-arm">Service Arm</label>
+            <select name="serviceArm" id="service-arm" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="referral-date">Referral Date</label>
+            <input type="date" name="referralDate" id="referral-date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="provider">Service Provider</label>
+            <select name="provider" id="provider" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="referral-pathway">General Practice / Referral Pathway</label>
+            <select name="referralPathway" id="referral-pathway" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="practitioner">General Practitioner / Nurse Practitioner</label>
+            <input type="text" name="practitioner" id="practitioner" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="gp-team-member">GP Team Members</label>
+            <input type="text" name="gpTeamMember" id="gp-team-member" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select name="status" id="case-status" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="close-reason">Close Reason</label>
+            <select name="closeReason" id="close-reason" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="close-date">Close Date</label>
+            <input type="date" name="closeDate" id="close-date" class="form-control">
+          </div>
         </div>
-  
-        <div class="form-group">
-          <label for="referral-date">Referral Date</label>
-          <input type="date" name="referralDate" id="referral-date" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="provider">Service Provider</label>
-          <select name="provider" id="provider" class="form-control"></select>
-        </div>
-  
-        <div class="form-group">
-          <label for="referral-pathway">General Practice / Referral Pathway</label>
-          <select name="referralPathway" id="referral-pathway" class="form-control"></select>
-        </div>
-
-        <div class="form-group">
-          <label for="practitioner">General Practitioner / Nurse Practitioner</label>
-          <input type="text" name="practitioner" id="practitioner" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="gp-team-member">GP Team Members</label>
-          <input type="text" name="gpTeamMember" id="gp-team-member" class="form-control">
-        </div>
-  
-        <div class="form-group">
-          <label for="status">Status</label>
-          <select name="status" id="case-status" class="form-control"></select>
-        </div>
-
-        <div class="form-group">
-          <label for="close-reason">Close Reason</label>
-          <select name="closeReason" id="close-reason" class="form-control"></select>
-        </div>
-
-        <div class="form-group">
-          <label for="close-date">Close Date</label>
-          <input type="date" name="closeDate" id="close-date" class="form-control">
-        </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
 
     <div id="enrolment">
       <h2>Enrolment</h2>
       <form action="">
-        <div class="form-group">
-          <label for="consent-date">Consent Date</label>
-          <input type="date" name="consentDate" id="consent-date" class="form-control">
+        <div class="form-wrapper">
+          <div class="form-group">
+            <label for="consent-date">Consent Date</label>
+            <input type="date" name="consentDate" id="consent-date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="plan-created-date">Plan Created Date</label>
+            <input type="date" name="planCreatedDate" id="plan-created-date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="enrolment-date">Enrolment Date</label>
+            <input type="date" name="enrolmentDate" id="enrolment-date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="employment-status">Employment Status at Enrolment</label>
+            <select name="employmentStatus" id="employment-status" class="form-control"></select>
+          </div>
         </div>
-  
-        <div class="form-group">
-          <label for="plan-created-date">Plan Created Date</label>
-          <input type="date" name="planCreatedDate" id="plan-created-date" class="form-control">
-        </div>
-  
-        <div class="form-group">
-          <label for="enrolment-date">Enrolment Date</label>
-          <input type="date" name="enrolmentDate" id="enrolment-date" class="form-control">
-        </div>
-  
-        <div class="form-group">
-          <label for="employment-status">Employment Status at Enrolment</label>
-          <select name="employmentStatus" id="employment-status" class="form-control"></select>
-        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
 

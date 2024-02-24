@@ -1,9 +1,4 @@
 class Case {
-	wellbeingStarData = [];
-	serviceData = [];
-	workReadinessOutcomeData = [];
-	employmentOutcomeData = [];
-
 	constructor(
 		serviceArm,
 		referralDate,
@@ -24,6 +19,11 @@ class Case {
 		this.closeReason = closeReason;
 		this.closeDate = closeDate;
 		this.provider = provider;
+		this.enrolment = new Enrolment();
+		this.wellbeingStarData = [];
+		this.serviceData = [];
+		this.workReadinessOutcomeData = [];
+		this.employmentOutcomeData = [];
 	}
 }
 
@@ -77,7 +77,6 @@ class Service {
 		this.dateServiceAccessed = dateServiceAccessed;
 		this.serviceType = serviceType;
 	}
-	// get serviceTypeDesc() { return serviceTypes[this.serviceType] };
 }
 
 class WorkReadinessOutcome {
@@ -85,7 +84,6 @@ class WorkReadinessOutcome {
 		this.outcome = outcome;
 		this.startDate = startDate;
 	}
-	// get outcomeDesc() { return workReadinessOutcomes[this.outcome]; };
 }
 
 class EmploymentOutcome {
@@ -95,120 +93,133 @@ class EmploymentOutcome {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
-	// get outcomeDesc() { employmentOutcomes[outcome] };
 }
 
-function createCase(formData) {
-	return new Case(
-		formData.get('serviceArm'),
-		formData.get('referralDate'),
-		formData.get('provider'),
-		formData.get('referralPathway'),
-		formData.get('practitioner'),
-		formData.get('gpTeamMember'),
-		formData.get('status'),
-		formData.get('closeReason'),
-		formData.get('closeDate')
-	);
+class CaseController {
+	currentCase = new Case();
+
+	createCase(formData) {
+		return new Case(
+			formData.get('serviceArm'),
+			formData.get('referralDate'),
+			formData.get('provider'),
+			formData.get('referralPathway'),
+			formData.get('practitioner'),
+			formData.get('gpTeamMember'),
+			formData.get('status'),
+			formData.get('closeReason'),
+			formData.get('closeDate')
+		);
+	}
+
+	updateCase(caseObj, formData) {
+		caseObj.serviceArm = formData.get('serviceArm');
+		caseObj.referralDate = formData.get('referralDate');
+		caseObj.provider = formData.get('provider');
+		caseObj.referralPathway = formData.get('referralPathway');
+		caseObj.practitioner = formData.get('practitioner');
+		caseObj.gpTeamMember = formData.get('gpTeamMember');
+		caseObj.status = formData.get('status');
+		caseObj.closeReason = formData.get('closeReason');
+		caseObj.closeDate = formData.get('closeDate');
+
+		return caseObj;
+	}
+
+	createEnrolment(formData) {
+		return new Enrolment(
+			formData.get('consentDate'),
+			formData.get('planCreatedDate'),
+			formData.get('enrolmentDate'),
+			formData.get('enrolmentStatus')
+		);
+	}
+
+	updateEnrolment(enrolment, formData) {
+		enrolment.consentDate = formData.get('consentDate');
+		enrolment.planCreatedDate = formData.get('planCreatedDate');
+		enrolment.enrolmentDate = formData.get('enrolmentDate');
+		enrolment.enrolmentStatus = formData.get('enrolmentStatus');
+		return enrolment;
+	}
+
+	createWellbeingStar(formData) {
+		return new WellbeingStar(
+			formData.get('dateCompleted'),
+			Number(formData.get('lifestyle')),
+			Number(formData.get('lookingAfterYourself')),
+			Number(formData.get('managingSymptoms')),
+			Number(formData.get('workVolunteeringOther')),
+			Number(formData.get('money')),
+			Number(formData.get('whereYouLive')),
+			Number(formData.get('familyAndFriends')),
+			Number(formData.get('feelingPositive'))
+		);
+	}
+
+	updateWellbeingStar(wellbeingStar, formData) {
+		wellbeingStar.dateCompleted = formData.get('dateCompleted');
+		wellbeingStar.lifestyle = Number(formData.get('lifestyle'));
+		wellbeingStar.lookingAfterYourself = Number(formData.get('lookingAfterYourself'));
+		wellbeingStar.managingSymptoms = Number(formData.get('managingSymptoms'));
+		wellbeingStar.workVolunteeringOther = Number(formData.get('workVolunteeringOther'));
+		wellbeingStar.money = Number(formData.get('money'));
+		wellbeingStar.whereYouLive = Number(formData.get('whereYouLive'));
+		wellbeingStar.familyAndFriends = Number(formData.get('familyAndFriends'));
+		wellbeingStar.feelingPositive = Number(formData.get('feelingPositive'));
+		return wellbeingStar;
+	}
+
+	createService(formData) {
+		return new Service(
+			formData.get('dateServiceAccessed'),
+			formData.get('serviceType')
+		);
+	}
+
+	updateService(service, formData) {
+		service.dateServiceAccessed = formData.get('dateServiceAccessed');
+		service.serviceType = formData.get('serviceType');
+		return service;
+	}
+
+	createWorkReadinessOutcome(formData) {
+		return new WorkReadinessOutcome(
+			formData.get('outcome'),
+			formData.get('startDate')
+		);
+	}
+
+	updateWorkReadinessOutcome(workReadinessOutcome, formData) {
+		workReadinessOutcome.outcome = formData.get('outcome');
+		workReadinessOutcome.startDate = formData.get('startDate');
+		return workReadinessOutcome;
+	}
+
+	createEmploymentOutcome(formData) {
+		return new EmploymentOutcome(
+			formData.get('outcome'),
+			formData.get('hoursPerWeek'),
+			formData.get('startDate'),
+			formData.get('endDate')
+		);
+	}
+
+	updateEmploymentOutcome(employmentOutcome, formData) {
+		employmentOutcome.outcome = formData.get('outcome');
+		employmentOutcome.hoursPerWeek = formData.get('hoursPerWeek');
+		employmentOutcome.startDate = formData.get('startDate');
+		employmentOutcome.endDate = formData.get('endDate');
+		return employmentOutcome;
+	}
 }
 
-const currentCase = new Case();
+class DisplayController {
+	caseController = new CaseController();
 
-// function updateCase(formData) {
-// 	serviceArm = formData.get('serviceArm');
-// 	referralDate = formData.get('referralDate');
-// 	provider = formData.get('provider');
-// 	referralPathway = formData.get('referralPathway');
-// 	practitioner = formData.get('practitioner');
-// 	gpTeamMember = formData.get('gpTeamMember');
-// 	status = formData.get('status');
-// 	closeReason = formData.get('closeReason');
-// 	closeDate = formData.get('closeDate');
-// }
+	serviceArmOptions = ['Standard', 'Responding Early'];
 
-function createEnrolment(formData) {
-	return new Enrolment(
-		formData.get('consentDate'),
-		formData.get('planCreatedDate'),
-		formData.get('enrolmentDate'),
-		formData.get('enrolmentStatus')
-	);
-}
-
-// function updateEnrolment(formData) {
-// 	const consentDate = formData.get('consentDate');
-// 	const planCreatedDate = formData.get('planCreatedDate');
-// 	const enrolmentDate = formData.get('enrolmentDate');
-// 	const enrolmentStatus = formData.get('enrolmentStatus');
-// }
-
-function createWellbeingStar(formData) {
-	return new WellbeingStar(
-		formData.get('dateCompleted'),
-		Number(formData.get('lifestyle')),
-		Number(formData.get('lookingAfterYourself')),
-		Number(formData.get('managingSymptoms')),
-		Number(formData.get('workVolunteeringOther')),
-		Number(formData.get('money')),
-		Number(formData.get('whereYouLive')),
-		Number(formData.get('familyAndFriends')),
-		Number(formData.get('feelingPositive'))
-	);
-}
-
-// function updateWellbeingStar(formData) {
-// 	const dateCompleted = formData.get('dateCompleted');
-// 	const lifestyle = Number(formData.get('lifestyle'));
-// 	const lookingAfterYourself = Number(formData.get('lookingAfterYourself'));
-// 	const managingSymptoms = Number(formData.get('managingSymptoms'));
-// 	const workVolunteeringOther = Number(formData.get('workVolunteeringOther'));
-// 	const money = Number(formData.get('money'));
-// 	const whereYouLive = Number(formData.get('whereYouLive'));
-// 	const familyAndFriends = Number(formData.get('familyAndFriends'));
-// 	const feelingPositive = Number(formData.get('feelingPositive'));
-// }
-
-function createService(formData) {
-	return new Service(
-		formData.get('dateServiceAccessed'),
-		formData.get('serviceType')
-	);
-}
-
-// function updateService(formData) {
-// 	const dateServiceAccessed = formData.get('dateServiceAccessed');
-// 	const serviceType = formData.get('serviceType')
-// }
-
-function createWorkReadinessOutcome(formData) {
-	return new WorkReadinessOutcome(formData.get('outcome'), formData.get('startDate'));
-}
-
-// function updateWorkReadinessOutcome(formData) {
-// 	const outcome = formData.get('outcome');
-// 	const startDate = formData.get('startDate');
-// }
-
-function createEmploymentOutcome(formData) {
-	return new EmploymentOutcome(
-		formData.get('outcome'),
-		formData.get('hoursPerWeek'),
-		formData.get('startDate'),
-		formData.get('endDate')
-	);
-}
-
-// function updateEmploymentOutcome(formData) {
-// 	const outcome = formData.get('outcome');
-// 	const hoursPerWeek = formData.get('hoursPerWeek');
-// 	const startDate = formData.get('startDate');
-// 	const endDate = formData.get('endDate');
-// }
-
-{
-	const serviceArmOptions = ['Standard', 'Responding Early'];
-
-	const caseStatusOptions = [
+	caseStatusOptions = [
 		'Awaiting Enrolment',
 		'Did Not Proceed',
 		'Active',
@@ -217,7 +228,7 @@ function createEmploymentOutcome(formData) {
 		'Transfer to Standard Service Arm',
 	];
 
-	const caseStatusToCloseReasons = {
+	caseStatusToCloseReasons = {
 		0: [0],
 		1: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 		2: [0],
@@ -226,7 +237,7 @@ function createEmploymentOutcome(formData) {
 		5: [1],
 	};
 
-	const closeReasonOptions = [
+	closeReasonOptions = [
 		'Not applicable',
 		'Transfer to Standard Service Arm',
 		'Achieved Desired Outcomes',
@@ -246,7 +257,7 @@ function createEmploymentOutcome(formData) {
 		'Not Suitable',
 	];
 
-	const serviceTypeOptions = [
+	serviceTypeOptions = [
 		'AOD/Addiction Support Services',
 		'Career Advice/Exploration',
 		'Counselling/Life Coaching',
@@ -267,7 +278,7 @@ function createEmploymentOutcome(formData) {
 		'Other Services',
 	];
 
-	const workReadinessOutcomeOptions = [
+	workReadinessOutcomeOptions = [
 		'Paid Work <15 Hours per Week',
 		'Volunteer Work',
 		'Full-time Study',
@@ -277,19 +288,14 @@ function createEmploymentOutcome(formData) {
 		'Other',
 	];
 
-	const employmentOutcomeOptions = [
+	employmentOutcomeOptions = [
 		'Full-time Work (30+ Hours per Week)',
 		'Part-time Work (15-29 Hours per Week)',
 	];
 
-	const providerOptions = [
-		'Micky Mouse',
-		'Minnie Mouse',
-		'Donald Duck',
-		'Goofy',
-	];
+	providerOptions = ['Micky Mouse', 'Minnie Mouse', 'Donald Duck', 'Goofy'];
 
-	const referralPathwayOptions = [
+	referralPathwayOptions = [
 		'169 Medical Centre',
 		'Awapuni Medical Centre',
 		'Best Care Whakapai Hauora',
@@ -335,7 +341,7 @@ function createEmploymentOutcome(formData) {
 		'Ashhurst Health centre',
 	];
 
-	function displayWellbeingStar(wellbeingStar) {
+	displayWellbeingStar(wellbeingStar) {
 		return [
 			wellbeingStar.dateCompleted,
 			wellbeingStar.total,
@@ -347,33 +353,33 @@ function createEmploymentOutcome(formData) {
 			wellbeingStar.whereYouLive,
 			wellbeingStar.familyAndFriends,
 			wellbeingStar.feelingPositive,
-		]
+		];
 	}
 
-	function displayService(service) {
+	displayService = (service) => {
 		return [
 			service.dateServiceAccessed,
-			serviceTypeOptions[service.serviceType]
-		]
-	}
+			this.serviceTypeOptions[service.serviceType],
+		];
+	};
 
-	function displayWorkReadinessOutcome(workReadinessOutcome) {
+	displayWorkReadinessOutcome = (workReadinessOutcome) => {
 		return [
-			workReadinessOutcomeOptions[workReadinessOutcome.outcome],
-			workReadinessOutcome.startDate
-		]
-	}
+			this.workReadinessOutcomeOptions[workReadinessOutcome.outcome],
+			workReadinessOutcome.startDate,
+		];
+	};
 
-	function displayEmploymentOutcome(employmentOutcome) {
+	displayEmploymentOutcome = (employmentOutcome) => {
 		return [
-			employmentOutcomeOptions[employmentOutcome.outcome],
+			this.employmentOutcomeOptions[employmentOutcome.outcome],
 			employmentOutcome.hoursPerWeek,
 			employmentOutcome.startDate,
-			employmentOutcome.endDate
-		]
-	}
+			employmentOutcome.endDate,
+		];
+	};
 
-	function createTableRows(tableBody, objArr, displayFn) {
+	createTableRows(tableBody, objArr, displayFn) {
 		tableBody.innerHTML = '';
 
 		objArr.forEach((obj) => {
@@ -385,46 +391,46 @@ function createEmploymentOutcome(formData) {
 		});
 	}
 
-	function submitForm(form, createObjFn, objArr, displayFn, tableBody, dialog) {
+	submitForm(form, createObjFn, objArr, displayFn, tableBody, dialog) {
 		const formData = new FormData(form);
 		objArr.push(createObjFn(formData));
-		createTableRows(tableBody, objArr, displayFn);
+		this.createTableRows(tableBody, objArr, displayFn);
 		form.reset();
 		dialog.close();
 	}
 
-	function createSection(id, createObjFn, objArr, displayFn) {
+	createSection(id, createObjFn, objArr, displayFn) {
 		return { id, createObjFn, objArr, displayFn };
 	}
 
-	const sections = [
-		createSection(
+	sections = [
+		this.createSection(
 			'#wellbeing-star',
-			createWellbeingStar,
-			currentCase.wellbeingStarData,
-			displayWellbeingStar,
+			this.caseController.createWellbeingStar,
+			this.caseController.currentCase.wellbeingStarData,
+			this.displayWellbeingStar
 		),
-		createSection(
-			'#services', 
-			createService, 
-			currentCase.serviceData,
-			displayService,
+		this.createSection(
+			'#services',
+			this.caseController.createService,
+			this.caseController.currentCase.serviceData,
+			this.displayService
 		),
-		createSection(
+		this.createSection(
 			'#work-readiness-outcomes',
-			createWorkReadinessOutcome,
-			currentCase.workReadinessOutcomeData,
-			displayWorkReadinessOutcome,
+			this.caseController.createWorkReadinessOutcome,
+			this.caseController.currentCase.workReadinessOutcomeData,
+			this.displayWorkReadinessOutcome
 		),
-		createSection(
+		this.createSection(
 			'#employment-outcomes',
-			createEmploymentOutcome,
-			currentCase.employmentOutcomeData,
-			displayEmploymentOutcome,
+			this.caseController.createEmploymentOutcome,
+			this.caseController.currentCase.employmentOutcomeData,
+			this.displayEmploymentOutcome
 		),
 	];
 
-	sections.forEach((section) => {
+	dialogHandler(section) {
 		const root = document.querySelector(section.id);
 		const dialog = root.querySelector('dialog');
 		const showDialogButton = root.querySelector('dialog + button');
@@ -435,42 +441,55 @@ function createEmploymentOutcome(formData) {
 
 		form.addEventListener('submit', (e) => {
 			e.preventDefault();
-			submitForm(form, section.createObjFn, section.objArr, section.displayFn, tableBody, dialog);
+			this.submitForm(
+				form,
+				section.createObjFn,
+				section.objArr,
+				section.displayFn,
+				tableBody,
+				dialog
+			);
 		});
-	});
+	}
 
-	//
-	// Options
-	//
-	function createOptions(id, arr) {
+	addDialogHandler() {
+		this.sections.forEach((section) => this.dialogHandler(section));
+	}
+
+	createOptions(id, arr) {
 		return { id, arr };
 	}
 
-	const options = [
-		createOptions('#service-arm', serviceArmOptions),
-		createOptions('#provider', providerOptions),
-		createOptions('#referral-pathway', referralPathwayOptions),
-		createOptions('#case-status', caseStatusOptions),
-		createOptions('#employment-status', employmentOutcomeOptions),
-		createOptions('#service-type', serviceTypeOptions),
-		createOptions('#work-readiness-outcome', workReadinessOutcomeOptions),
-		createOptions('#employment-outcome', employmentOutcomeOptions),
+	options = [
+		this.createOptions('#service-arm', this.serviceArmOptions),
+		this.createOptions('#provider', this.providerOptions),
+		this.createOptions('#referral-pathway', this.referralPathwayOptions),
+		this.createOptions('#case-status', this.caseStatusOptions),
+		this.createOptions('#employment-status', this.employmentOutcomeOptions),
+		this.createOptions('#service-type', this.serviceTypeOptions),
+		this.createOptions(
+			'#work-readiness-outcome',
+			this.workReadinessOutcomeOptions
+		),
+		this.createOptions('#employment-outcome', this.employmentOutcomeOptions),
 	];
 
-	function addOptions(selectElement, option, optionIndex) {
+	optionsHandler(selectElement, option, optionIndex) {
 		const optionElement = document.createElement('option');
 		optionElement.textContent = option;
 		optionElement.value = optionIndex;
 		selectElement.appendChild(optionElement);
 	}
 
-	options.forEach((option) => {
-		option.arr.forEach((e, i) => {
-			addOptions(document.querySelector(option.id), e, i);
+	addOptionsHandler() {
+		this.options.forEach((option) => {
+			option.arr.forEach((e, i) => {
+				this.optionsHandler(document.querySelector(option.id), e, i);
+			});
 		});
-	});
+	}
 
-	function getTodaysDate() {
+	getTodaysDate() {
 		let today = new Date();
 		const dd = String(today.getDate()).padStart(2, '0');
 		const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -479,12 +498,10 @@ function createEmploymentOutcome(formData) {
 		return today;
 	}
 
-	const caseStatus = document.querySelector('#case-status');
-	const closeReason = document.querySelector('#close-reason');
-	const closeDate = document.querySelector('#close-date');
-
-	function caseStatusHandler() {
+	caseStatusHandler() {
 		const closeReasonValue = document.querySelector('#case-status').value;
+		const closeReason = document.querySelector('#close-reason');
+		const closeDate = document.querySelector('#close-date');
 
 		closeReason.innerHTML = '';
 		closeReason.disabled = true;
@@ -497,22 +514,36 @@ function createEmploymentOutcome(formData) {
 			}
 			case '5': {
 				closeDate.disabled = false;
-				closeDate.value = getTodaysDate();
-				const reasons = caseStatusToCloseReasons[closeReasonValue];
-				reasons.forEach(reasonId => addOptions(closeReason, closeReasonOptions[reasonId], reasonId));
+				closeDate.value = this.getTodaysDate();
+				const reasons = this.caseStatusToCloseReasons[closeReasonValue];
+				reasons.forEach((reasonId) =>
+					this.optionsHandler(
+						closeReason,
+						this.closeReasonOptions[reasonId],
+						reasonId
+					)
+				);
 				break;
 			}
 			default: {
-				const reasons = caseStatusToCloseReasons[closeReasonValue];
-				reasons.forEach(reasonId => addOptions(closeReason, closeReasonOptions[reasonId], reasonId));
+				const reasons = this.caseStatusToCloseReasons[closeReasonValue];
+				reasons.forEach((reasonId) =>
+					this.optionsHandler(
+						closeReason,
+						this.closeReasonOptions[reasonId],
+						reasonId
+					)
+				);
 				closeDate.value = null;
 				break;
 			}
 		}
 	}
 
-	caseStatusHandler();
-	caseStatus.addEventListener('change', () => caseStatusHandler());
+	addCaseStatusHandler() {
+		const caseStatus = document.querySelector('#case-status');
+		caseStatus.addEventListener('change', () => this.caseStatusHandler());
+	}
 
 	// const caseDetails = createCase();
 	// const caseForm = document.querySelector('#details > form');
@@ -524,3 +555,9 @@ function createEmploymentOutcome(formData) {
 	// 	console.log(caseDetails.getCase());
 	// });
 }
+
+const displayController = new DisplayController();
+displayController.addDialogHandler();
+displayController.addOptionsHandler();
+displayController.caseStatusHandler(); // Run once on load
+displayController.addCaseStatusHandler();
