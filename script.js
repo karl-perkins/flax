@@ -308,8 +308,10 @@ class DisplayController {
 	];
 
 	employmentOutcomeOptions = [
-		'Full-time Work (30+ Hours per Week)',
-		'Part-time Work (15-29 Hours per Week)',
+		'Started Full-time Work (30+ Hours per Week)',
+		'Started Part-time Work (15-29 Hours per Week)',
+		'Retained Full-time Work (30+ Hours per Week)',
+		'Retained Part-time Work (15-29 Hours per Week)',
 	];
 
 	providerOptions = ['Micky Mouse', 'Minnie Mouse', 'Donald Duck', 'Goofy'];
