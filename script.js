@@ -8,7 +8,7 @@ class Case {
 		caseStatus,
 		closeReason,
 		closeDate,
-		provider
+		serviceProvider
 	) {
 		this.serviceArm = serviceArm;
 		this.referralDate = referralDate;
@@ -18,7 +18,7 @@ class Case {
 		this.caseStatus = caseStatus;
 		this.closeReason = closeReason;
 		this.closeDate = closeDate;
-		this.provider = provider;
+		this.serviceProvider = serviceProvider;
 		this.enrolment = new Enrolment();
 		this.wellbeingStarData = [];
 		this.serviceData = [];
@@ -102,11 +102,11 @@ class CaseController {
 		return new Case(
 			formData.get('serviceArm'),
 			formData.get('referralDate'),
-			formData.get('provider'),
+			formData.get('serviceProvider'),
 			formData.get('referralPathway'),
 			formData.get('practitioner'),
 			formData.get('gpTeamMember'),
-			formData.get('status'),
+			formData.get('caseStatus'),
 			formData.get('closeReason'),
 			formData.get('closeDate')
 		);
@@ -115,11 +115,11 @@ class CaseController {
 	updateCase(caseObj, formData) {
 		caseObj.serviceArm = formData.get('serviceArm');
 		caseObj.referralDate = formData.get('referralDate');
-		caseObj.provider = formData.get('provider');
+		caseObj.provider = formData.get('serviceProvider');
 		caseObj.referralPathway = formData.get('referralPathway');
 		caseObj.practitioner = formData.get('practitioner');
 		caseObj.gpTeamMember = formData.get('gpTeamMember');
-		caseObj.caseStatus = formData.get('status');
+		caseObj.caseStatus = formData.get('caseStatus');
 		caseObj.closeReason = formData.get('closeReason');
 		caseObj.closeDate = formData.get('closeDate');
 
@@ -462,7 +462,7 @@ class DisplayController {
 
 	options = [
 		this.createOptions('#service-arm', this.serviceArmOptions),
-		this.createOptions('#provider', this.providerOptions),
+		this.createOptions('#service-provider', this.providerOptions),
 		this.createOptions('#referral-pathway', this.referralPathwayOptions),
 		this.createOptions('#case-status', this.caseStatusOptions),
 		this.createOptions('#employment-status', this.employmentOutcomeOptions),
