@@ -538,10 +538,13 @@ class DisplayController {
 			);
 		});
 
+		const workReadinessOutcomes = document.querySelector('#work-readiness-outcomes');
 		if (serviceArmValue === '0') {
 			employmentStatus.disabled = true;
+			workReadinessOutcomes.style.display = 'block';
 		} else {
 			employmentStatus.disabled = false;
+			workReadinessOutcomes.style.display = 'none';
 		}
 
 	}
