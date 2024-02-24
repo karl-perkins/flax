@@ -122,7 +122,6 @@ class CaseController {
 		caseObj.caseStatus = formData.get('caseStatus');
 		caseObj.closeReason = formData.get('closeReason');
 		caseObj.closeDate = formData.get('closeDate');
-
 		return caseObj;
 	}
 
@@ -140,7 +139,7 @@ class CaseController {
 		enrolment.planCreatedDate = formData.get('planCreatedDate');
 		enrolment.enrolmentDate = formData.get('enrolmentDate');
 		enrolment.employmentStatus = formData.get('employmentStatus');
-		// return this.currentCase.enrolment = enrolment;
+		return enrolment;
 	}
 
 	createWellbeingStar(formData) {
@@ -219,6 +218,11 @@ class DisplayController {
 
 	serviceArmOptions = ['Standard', 'Responding Early'];
 
+	serviceArmToCaseStatusOptions = {
+		0: [0, 1, 2, 3, 4],
+		1: [0, 1, 2, 4, 5]
+	}
+
 	caseStatusOptions = [
 		'Awaiting Enrolment',
 		'Did Not Proceed',
@@ -228,7 +232,7 @@ class DisplayController {
 		'Transfer to Standard Service Arm',
 	];
 
-	caseStatusToCloseReasons = {
+	caseStatusToCloseReasonOptions = {
 		0: [0],
 		1: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 		2: [0],
@@ -286,6 +290,17 @@ class DisplayController {
 		'Participation in Training Program',
 		'Carer',
 		'Other',
+	];
+
+	serviceArmToEmploymentStatusOptions = {
+		0: [0],
+		1: [1, 2]
+	}
+
+	employmentStatusOptions = [
+		'Not applicable',
+		'Full-time Work (30+ Hours per Week)',
+		'Part-time Work (15-29 Hours per Week)',
 	];
 
 	employmentOutcomeOptions = [
@@ -464,8 +479,6 @@ class DisplayController {
 		this.createOptions('#service-arm', this.serviceArmOptions),
 		this.createOptions('#service-provider', this.providerOptions),
 		this.createOptions('#referral-pathway', this.referralPathwayOptions),
-		this.createOptions('#case-status', this.caseStatusOptions),
-		this.createOptions('#employment-status', this.employmentOutcomeOptions),
 		this.createOptions('#service-type', this.serviceTypeOptions),
 		this.createOptions('#work-readiness-outcome', this.workReadinessOutcomeOptions),
 		this.createOptions('#employment-outcome', this.employmentOutcomeOptions),
@@ -495,6 +508,48 @@ class DisplayController {
 		return today;
 	}
 
+	serviceArmHandler() {
+		const serviceArmValue = document.querySelector('#service-arm').value;
+		const caseStatus = document.querySelector('#case-status');
+		caseStatus.innerHTML = '';
+		const caseStatusOptions = this.serviceArmToCaseStatusOptions[serviceArmValue];
+
+		caseStatusOptions.forEach((serviceArmId) => {
+			this.optionsHandler(
+				caseStatus,
+				this.caseStatusOptions[serviceArmId],
+				serviceArmId
+			);
+		});
+
+		const employmentStatus = document.querySelector('#employment-status');
+		employmentStatus.innerHTML = '';
+		const employmentStatusOptions = this.serviceArmToEmploymentStatusOptions[serviceArmValue];
+
+		employmentStatusOptions.forEach((employmentStatusId) => {
+			this.optionsHandler(
+				employmentStatus,
+				this.employmentStatusOptions[employmentStatusId],
+				employmentStatusId
+			);
+		});
+
+		if (serviceArmValue === '0') {
+			employmentStatus.disabled = true;
+		} else {
+			employmentStatus.disabled = false;
+		}
+
+	}
+
+	addserviceArmHandler() {
+		const serviceArm = document.querySelector('#service-arm');
+		serviceArm.addEventListener('change', () => {
+			this.serviceArmHandler()
+			this.caseStatusHandler();
+		});
+	}
+
 	caseStatusHandler() {
 		const closeReasonValue = document.querySelector('#case-status').value;
 		const closeReason = document.querySelector('#close-reason');
@@ -512,7 +567,7 @@ class DisplayController {
 			case '5': {
 				closeDate.disabled = false;
 				closeDate.value = this.getTodaysDate();
-				const reasons = this.caseStatusToCloseReasons[closeReasonValue];
+				const reasons = this.caseStatusToCloseReasonOptions[closeReasonValue];
 				reasons.forEach((reasonId) =>
 					this.optionsHandler(
 						closeReason,
@@ -523,7 +578,7 @@ class DisplayController {
 				break;
 			}
 			default: {
-				const reasons = this.caseStatusToCloseReasons[closeReasonValue];
+				const reasons = this.caseStatusToCloseReasonOptions[closeReasonValue];
 				reasons.forEach((reasonId) =>
 					this.optionsHandler(
 						closeReason,
@@ -564,6 +619,8 @@ class DisplayController {
 const displayController = new DisplayController();
 displayController.addDialogHandler();
 displayController.addOptionsHandler();
+displayController.serviceArmHandler(); // Run once on load
+displayController.addserviceArmHandler();
 displayController.caseStatusHandler(); // Run once on load
 displayController.addCaseStatusHandler();
 displayController.addCaseFormHandler();
