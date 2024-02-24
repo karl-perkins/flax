@@ -96,7 +96,9 @@ class EmploymentOutcome {
 }
 
 class CaseController {
-	currentCase = new Case();
+	constructor (currentCase) {
+		this.currentCase = currentCase;
+	}
 
 	createCase(formData) {
 		return new Case(
@@ -214,7 +216,9 @@ class CaseController {
 }
 
 class DisplayController {
-	caseController = new CaseController();
+	constructor (caseController) {
+		this.caseController =  caseController;
+	}
 
 	serviceArmOptions = ['Standard', 'Responding Early'];
 
@@ -421,26 +425,26 @@ class DisplayController {
 	sections = [
 		this.createSection(
 			'#wellbeing-star',
-			this.caseController.createWellbeingStar,
-			this.caseController.currentCase.wellbeingStarData,
+			caseController.createWellbeingStar,
+			caseController.currentCase.wellbeingStarData,
 			this.displayWellbeingStar
 		),
 		this.createSection(
 			'#services',
-			this.caseController.createService,
-			this.caseController.currentCase.serviceData,
+			caseController.createService,
+			caseController.currentCase.serviceData,
 			this.displayService
 		),
 		this.createSection(
 			'#work-readiness-outcomes',
-			this.caseController.createWorkReadinessOutcome,
-			this.caseController.currentCase.workReadinessOutcomeData,
+			caseController.createWorkReadinessOutcome,
+			caseController.currentCase.workReadinessOutcomeData,
 			this.displayWorkReadinessOutcome
 		),
 		this.createSection(
 			'#employment-outcomes',
-			this.caseController.createEmploymentOutcome,
-			this.caseController.currentCase.employmentOutcomeData,
+			caseController.createEmploymentOutcome,
+			caseController.currentCase.employmentOutcomeData,
 			this.displayEmploymentOutcome
 		),
 	];
@@ -616,7 +620,10 @@ class DisplayController {
 	}
 }
 
-const displayController = new DisplayController();
+const currentCase = new Case();
+const caseController = new CaseController(currentCase);
+const displayController = new DisplayController(caseController);
+
 displayController.addDialogHandler();
 displayController.addOptionsHandler();
 displayController.serviceArmHandler(); // Run once on load
