@@ -28,11 +28,11 @@ class Case {
 }
 
 class Enrolment {
-	constructor(consentDate, planCreatedDate, enrolmentDate, enrolmentStatus) {
+	constructor(consentDate, planCreatedDate, enrolmentDate, employmentStatus) {
 		this.consentDate = consentDate;
 		this.planCreatedDate = planCreatedDate;
 		this.enrolmentDate = enrolmentDate;
-		this.enrolmentStatus = enrolmentStatus;
+		this.employmentStatus = employmentStatus;
 	}
 }
 
@@ -119,7 +119,7 @@ class CaseController {
 		caseObj.referralPathway = formData.get('referralPathway');
 		caseObj.practitioner = formData.get('practitioner');
 		caseObj.gpTeamMember = formData.get('gpTeamMember');
-		caseObj.status = formData.get('status');
+		caseObj.caseStatus = formData.get('status');
 		caseObj.closeReason = formData.get('closeReason');
 		caseObj.closeDate = formData.get('closeDate');
 
@@ -139,8 +139,8 @@ class CaseController {
 		enrolment.consentDate = formData.get('consentDate');
 		enrolment.planCreatedDate = formData.get('planCreatedDate');
 		enrolment.enrolmentDate = formData.get('enrolmentDate');
-		enrolment.enrolmentStatus = formData.get('enrolmentStatus');
-		return enrolment;
+		enrolment.employmentStatus = formData.get('employmentStatus');
+		// return this.currentCase.enrolment = enrolment;
 	}
 
 	createWellbeingStar(formData) {
@@ -467,10 +467,7 @@ class DisplayController {
 		this.createOptions('#case-status', this.caseStatusOptions),
 		this.createOptions('#employment-status', this.employmentOutcomeOptions),
 		this.createOptions('#service-type', this.serviceTypeOptions),
-		this.createOptions(
-			'#work-readiness-outcome',
-			this.workReadinessOutcomeOptions
-		),
+		this.createOptions('#work-readiness-outcome', this.workReadinessOutcomeOptions),
 		this.createOptions('#employment-outcome', this.employmentOutcomeOptions),
 	];
 
@@ -545,15 +542,23 @@ class DisplayController {
 		caseStatus.addEventListener('change', () => this.caseStatusHandler());
 	}
 
-	// const caseDetails = createCase();
-	// const caseForm = document.querySelector('#details > form');
-	// caseForm.addEventListener('submit', (e) => {
-	// 	console.log('submitted');
-	// 	e.preventDefault();
-	// 	const formData = new FormData(caseForm);
-	// 	caseDetails.updateCase(formData);
-	// 	console.log(caseDetails.getCase());
-	// });
+	addCaseFormHandler() {
+		const caseForm = document.querySelector('#details > form');
+		caseForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			const formData = new FormData(caseForm);
+			this.caseController.updateCase(this.caseController.currentCase, formData);
+		});
+	}
+
+	addEnrolmentFormHandler() {
+		const enrolmentForm = document.querySelector('#enrolment > form');
+		enrolmentForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			const formData = new FormData(enrolmentForm);
+			this.caseController.updateEnrolment(this.caseController.currentCase.enrolment, formData);
+		});
+	}
 }
 
 const displayController = new DisplayController();
@@ -561,3 +566,5 @@ displayController.addDialogHandler();
 displayController.addOptionsHandler();
 displayController.caseStatusHandler(); // Run once on load
 displayController.addCaseStatusHandler();
+displayController.addCaseFormHandler();
+displayController.addEnrolmentFormHandler();
