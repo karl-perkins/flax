@@ -542,7 +542,7 @@ class DisplayController {
 
 	}
 
-	addserviceArmHandler() {
+	addServiceArmHandler() {
 		const serviceArm = document.querySelector('#service-arm');
 		serviceArm.addEventListener('change', () => {
 			this.serviceArmHandler()
@@ -620,7 +620,7 @@ const displayController = new DisplayController();
 displayController.addDialogHandler();
 displayController.addOptionsHandler();
 displayController.serviceArmHandler(); // Run once on load
-displayController.addserviceArmHandler();
+displayController.addServiceArmHandler();
 displayController.caseStatusHandler(); // Run once on load
 displayController.addCaseStatusHandler();
 displayController.addCaseFormHandler();
