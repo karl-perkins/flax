@@ -119,7 +119,7 @@ class CaseController {
 	updateCase(caseObj, formData) {
 		caseObj.serviceArm = formData.get('serviceArm');
 		caseObj.referralDate = formData.get('referralDate');
-		caseObj.provider = formData.get('serviceProvider');
+		caseObj.serviceProvider = formData.get('serviceProvider');
 		caseObj.referralPathway = formData.get('referralPathway');
 		caseObj.practitioner = formData.get('practitioner');
 		caseObj.gpTeamMember = formData.get('gpTeamMember');
