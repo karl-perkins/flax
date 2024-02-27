@@ -8,7 +8,11 @@ class Case {
 		caseStatus,
 		closeReason,
 		closeDate,
-		serviceProvider
+		serviceProvider,
+		consentDate, 
+		planCreatedDate, 
+		enrolmentDate, 
+		employmentStatus
 	) {
 		this.serviceArm = serviceArm;
 		this.referralDate = referralDate;
@@ -19,20 +23,14 @@ class Case {
 		this.closeReason = closeReason;
 		this.closeDate = closeDate;
 		this.serviceProvider = serviceProvider;
-		this.enrolment = new Enrolment();
-		this.wellbeingStarData = [];
-		this.serviceData = [];
-		this.workReadinessOutcomeData = [];
-		this.employmentOutcomeData = [];
-	}
-}
-
-class Enrolment {
-	constructor(consentDate, planCreatedDate, enrolmentDate, employmentStatus) {
 		this.consentDate = consentDate;
 		this.planCreatedDate = planCreatedDate;
 		this.enrolmentDate = enrolmentDate;
 		this.employmentStatus = employmentStatus;
+		this.wellbeingStarData = [];
+		this.serviceData = [];
+		this.workReadinessOutcomeData = [];
+		this.employmentOutcomeData = [];
 	}
 }
 
@@ -110,7 +108,11 @@ class CaseController {
 			formData.get('gpTeamMember'),
 			formData.get('caseStatus'),
 			formData.get('closeReason'),
-			formData.get('closeDate')
+			formData.get('closeDate'),
+			formData.get('consentDate'),
+			formData.get('planCreatedDate'),
+			formData.get('enrolmentDate'),
+			formData.get('enrolmentStatus')
 		);
 	}
 
@@ -127,21 +129,12 @@ class CaseController {
 		return caseObj;
 	}
 
-	createEnrolment(formData) {
-		return new Enrolment(
-			formData.get('consentDate'),
-			formData.get('planCreatedDate'),
-			formData.get('enrolmentDate'),
-			formData.get('enrolmentStatus')
-		);
-	}
-
-	updateEnrolment(enrolment, formData) {
-		enrolment.consentDate = formData.get('consentDate');
-		enrolment.planCreatedDate = formData.get('planCreatedDate');
-		enrolment.enrolmentDate = formData.get('enrolmentDate');
-		enrolment.employmentStatus = formData.get('employmentStatus');
-		return enrolment;
+	updateEnrolment(caseObj, formData) {
+		caseObj.consentDate = formData.get('consentDate');
+		caseObj.planCreatedDate = formData.get('planCreatedDate');
+		caseObj.enrolmentDate = formData.get('enrolmentDate');
+		caseObj.employmentStatus = formData.get('employmentStatus');
+		return caseObj;
 	}
 
 	createWellbeingStar(formData) {
@@ -636,7 +629,7 @@ class DisplayController {
 		enrolmentForm.addEventListener('submit', (e) => {
 			e.preventDefault();
 			const formData = new FormData(enrolmentForm);
-			this.caseController.updateEnrolment(this.caseController.currentCase.enrolment, formData);
+			this.caseController.updateEnrolment(this.caseController.currentCase, formData);
 		});
 	}
 }
