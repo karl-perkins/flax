@@ -307,6 +307,11 @@ class DisplayController {
 		'Part-time Work (15-29 Hours per Week)',
 	];
 
+	serviceArmToEmploymentOutcomeOptions = {
+		0: [0, 1],
+		1: [0, 1, 2, 3]
+	}
+
 	employmentOutcomeOptions = [
 		'Started Full-time Work (30+ Hours per Week)',
 		'Started Part-time Work (15-29 Hours per Week)',
@@ -487,7 +492,7 @@ class DisplayController {
 		this.createOptions('#referral-pathway', this.referralPathwayOptions),
 		this.createOptions('#service-type', this.serviceTypeOptions),
 		this.createOptions('#work-readiness-outcome', this.workReadinessOutcomeOptions),
-		this.createOptions('#employment-outcome', this.employmentOutcomeOptions),
+		// this.createOptions('#employment-outcome', this.employmentOutcomeOptions),
 	];
 
 	optionsHandler(selectElement, option, optionIndex) {
@@ -549,6 +554,17 @@ class DisplayController {
 			workReadinessOutcomes.style.display = 'none';
 		}
 
+		const employmentOutcomes = document.querySelector('#employment-outcome');
+		employmentOutcomes.innerHTML = '';
+		const employmentOutcomeOptions = this.serviceArmToEmploymentOutcomeOptions[serviceArmValue];
+
+		employmentOutcomeOptions.forEach(employmentOutcomeId => {
+			this.optionsHandler(
+				employmentOutcomes,
+				this.employmentOutcomeOptions[employmentOutcomeId],
+				employmentOutcomeId
+			);
+		});
 	}
 
 	addServiceArmHandler() {
